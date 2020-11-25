@@ -1,0 +1,22 @@
+{
+	"name": "app",
+	"version": "1.0.0",
+	"description": "My app",
+	"main": "server.js",
+	"scripts": {
+		"install:all": "rm -rf node_modules && yarn && cd ./client && rm -rf node_modules && yarn && cd ..",
+		"install:all:force:start": "npm run install:all && npm run dev",
+		"start": "node server",
+		"server": "nodemon server",
+		"client": "npm run start --prefix client",
+		"dev": "concurrently \"npm run server\" \"npm run client\"",
+		"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+	},
+	"author": "Michael Khoussid",
+	"license": "ISC",
+	"dependencies": {
+		"concurrently": "^5.0.0",
+		"express": "^4.17.1",
+		"nodemon": "^2.0.1"
+	}
+}
